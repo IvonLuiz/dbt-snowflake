@@ -2,19 +2,19 @@ version: 2
 
 models:
   - name: stg_customers
-    description: one unique customer per row
+    description: Staged customer data from our jaffle shop app.
     columns:
       - name: customer_id
-        description: primary key for stg_customers
+        description: Primary key for customers.
         tests:
           - not_null
           - unique
           
   - name: stg_orders
-    description: one order per customer
+    description: Staged order data from our jaffle shop app.
     columns:
       - name: order_id
-        description: primary key for stg_orders
+        description: Primary key for orders.
         tests:
           - not_null
           - unique
@@ -29,6 +29,7 @@ models:
                 - returned
                 - placed
       - name: customer_id
+        description: Foreign key to stg_customers.customer_id.
         tests:
           - relationships:
               to: ref('stg_customers')
